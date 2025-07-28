@@ -1,0 +1,9 @@
+python-dotenv   # access keys .env file
+pandas
+numpy
+matplotlib
+seaborn
+pymongo
+certifi
+
+-e .            # links to `setup.py` file   
