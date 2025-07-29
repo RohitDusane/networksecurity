@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 mongo_url = os.getenv("MONGO_DB_URL")
-#print(mongo_url)
+print(mongo_url)
 
 import certifi
 ca = certifi.where()  # to make secure HTTP connections
@@ -23,7 +23,7 @@ class NetworkDataExtract:
     def __init__(self):
         try:
             # Initialize MongoDB Client here for reuse
-            self.mongo_client = pymongo.MongoClient(mongo_url, tls=True, tlsCAFile=ca)
+            # self.mongo_client = pymongo.MongoClient(mongo_url, tls=True, tlsCAFile=ca)
             self.logging = logging
         except Exception as e:
             raise NetworkSecurityException(e,sys)
@@ -35,14 +35,14 @@ class NetworkDataExtract:
     """   
     def csv_to_json_converter(self, file_path):
         try:
-            logging.info(f'Starting reading `csv` data.....')
+            logging.info(f'Started reading `csv` data.....')
             # read and reset index of data
             data = pd.read_csv(file_path)
-            logging.info(f'Reset Index for data.....')
+            logging.info(f'Reset and drop `Index`.')
             data.reset_index(drop=True, inplace=True)
 
             # converts data to json
-            logging.info(f'Converting into JSON.....')
+            logging.info(f'Convert into JSON.....')
             records = data.to_dict(orient='records')
             return records
         
@@ -63,7 +63,7 @@ class NetworkDataExtract:
             self.collection = self.database[self.collection]
             self.collection.insert_many(self.records)
             logging.info(f'Records added')
-            return len(self.records)
+            return (len(self.records))
         
         except Exception as e:
             raise NetworkSecurityException(e,sys)
@@ -73,14 +73,15 @@ class NetworkDataExtract:
 if __name__ == '__main__':
     logging.info('Starting Data Extraction!!!')
     file_path = 'Network_Data\\phisingData.csv'
-    database = 'RD_DB'
-    collection = 'Network_Data'
+    Database = 'RD_DB'
+    Collection = 'Network_Data'
 
     obj = NetworkDataExtract()
     records = obj.csv_to_json_converter(file_path)
-    number_of_records = obj.insert_records(records, database, collection)
-    print(f"\n Number of recoreds inserted: {number_of_records}")
     print(records)
+    number_of_records = obj.insert_records(records, Database, Collection)
+    print(f"\n Number of recoreds inserted: {number_of_records}")
+    print(number_of_records)
 
         
     # def csv_json(self, file_path):

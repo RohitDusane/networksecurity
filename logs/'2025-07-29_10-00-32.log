@@ -1,5 +1,0 @@
-[2025-07-29 10:00:32,666: 74: root -INFO: -push_data: -Starting Data Extraction!!!]
-[2025-07-29 10:00:54,949: 38: root -INFO: -push_data: -Starting reading `csv` data.....]
-[2025-07-29 10:00:54,995: 41: root -INFO: -push_data: -Reset Index for data.....]
-[2025-07-29 10:00:54,996: 45: root -INFO: -push_data: -Converting into JSON.....]
-[2025-07-29 10:00:55,104: 55: root -INFO: -push_data: -Staring Data Insertion......]
