@@ -3,7 +3,8 @@ pandas
 numpy
 matplotlib
 seaborn
-pymongo
+pymongo==4.13.2
 certifi
+pymongo[srv]==3.6
 
--e .            # links to `setup.py` file   
+#-e .            # links to `setup.py` file   
