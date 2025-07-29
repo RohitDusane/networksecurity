@@ -81,36 +81,3 @@ if __name__ == '__main__':
     print(records)
     number_of_records = obj.insert_records(records, Database, Collection)
     print(f"\n Number of recoreds inserted: {number_of_records}")
-    print(number_of_records)
-
-        
-    # def csv_json(self, file_path):
-    #     try:
-    #         # Read the CSV file into a pandas DataFrame
-    #         data = pd.read_csv(file_path)
-    #         data.reset_index(drop=True, inplace=True)
-
-    #         # Convert DataFrame to a dictionary of records (list of dictionaries)
-    #         records = data.to_dict(orient='records')
-            
-        #     return records
-        # except Exception as e:
-        #     raise NetworkSecurityException(e,sys) 
-
-    # def insert_data_mongodb(self, records, database, collection):
-    #     try:
-    #         # connect to MongoDB
-    #         mongo_client = pymongo.MongoClient(mongo_url)
-
-    #         #Access the database and colletion
-    #         db = mongo_client[database]
-    #         coll = db[collection]
-
-    #         # Inser the records into collection
-    #         result = coll.insert_many(records)
-
-    #         # Return count of records
-    #         return len(result.inserted_ids)
-
-    #     except Exception as e:
-    #         raise NetworkSecurityException(e,sys)
