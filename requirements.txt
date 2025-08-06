@@ -7,5 +7,6 @@ pymongo
 certifi
 pymongo[srv]
 scikit-learn
-
+pyaml
+dill
 #-e .            # links to `setup.py` file   
