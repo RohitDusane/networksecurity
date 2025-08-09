@@ -174,7 +174,7 @@ class DataValidation:
                 plt.savefig(os.path.join(visualization_dir, f'{col}_drift.png'))
                 plt.close()
 
-            logging.info(f"Drift report saved to \n {drift_report_file_path},\n CSV: {csv_report_path}, \n HTML: {html_report_path}")
+            logging.info(f"Drift report saved to {drift_report_file_path}, CSV: {csv_report_path}, HTML: {html_report_path}")
             return status
 
         except Exception as e:

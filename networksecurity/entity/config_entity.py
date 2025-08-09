@@ -76,6 +76,8 @@ class TrainingPipelineConfig:
         # Ensure the artifact directory exists
         os.makedirs(self.artifact_dir_with_timestamp, exist_ok=True)
 
+
+# -------- Data Ingestion Config --------------------
 class DataIngestionConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         self.data_ingestion_dir = os.path.join(training_pipeline_config.artifact_dir, training_pipeline.DATA_INGESTION_DIR_NAME)
@@ -100,7 +102,7 @@ class DataIngestionConfig:
 #     except Exception as e:
 #         raise NetworkSecurityException(str(e), sys.exc_info())
 
-
+# -------- Data Validation Config --------------------
 class DataValidationConfig:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         self.data_validation_dir:str = os.path.join(training_pipeline_config.artifact_dir, training_pipeline.DATA_VALIDATION_DIR_NAME)
@@ -115,6 +117,8 @@ class DataValidationConfig:
             training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME,
             )
 
+
+# -------- Data Transformation Config --------------------
 class DataTransformationConfig:
     def __init__(self, training_pipeline_config:TrainingPipelineConfig):
         self.data_transformation_dir:str = os.path.join(training_pipeline_config.artifact_dir,
@@ -129,3 +133,16 @@ class DataTransformationConfig:
                                                               training_pipeline.DATA_TRANSFORMATION_TRASFORMED_OBJECT_DIR,
                                                               training_pipeline.PREPROCESSNG_OBJECT_FILE_NAME)
         
+
+# -------- MODEL TRAINER Config --------------------
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        self.model_trainer_dir:str=os.path.join(training_pipeline_config.artifact_dir,
+                                                training_pipeline.MODEL_TRAINER_DIR_NAME)
+        
+        self.trained_model_file_path:str= os.path.join(self.model_trainer_dir,
+                                                       training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR,
+                                                       training_pipeline.MODEL_FILE_NAME)
+        
+        self.expected_accuracy:float = training_pipeline.MODEL_TRAINER_EXPECTED_SCORE
+        self.over_fitting_under_fitting_threshold: float = training_pipeline.MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD

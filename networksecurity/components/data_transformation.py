@@ -30,7 +30,7 @@ class DataTransformation:
             raise NetworkSecurityException(e,sys)
         
 
-    def get_data_transfomed_object(cls) -> Pipeline:
+    def get_data_transfomed_object(self) -> Pipeline:
         try:
             imputer:KNNImputer = KNNImputer(**DATA_TRANSFORMATION_IMPUTER_PARAMS)
             logging.info(f"Entered get_data_transformed_object methon in class DataTransformation")
@@ -72,6 +72,8 @@ class DataTransformation:
             save_numpy_array_data(self.data_transformation_config.transformed_train_file_path, array=train_arr)
             save_numpy_array_data(self.data_transformation_config.transformed_test_file_path, array=test_arr)
             save_object(self.data_transformation_config.transformed_object_file_path, preporcessor_object)
+            save_preprocessor = save_object('final_models/preprocessor.pkl', preporcessor_object)
+            logging.info(f"Saving the preprocessor...: {save_preprocessor}")
 
             # preparting artifact
             data_transformation_artifact = DataTransformationArtifact(

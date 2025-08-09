@@ -8,5 +8,8 @@ certifi
 pymongo[srv]
 scikit-learn
 pyaml
-dill
+mlflow
+dagshub
+fastapi
+uvicorn
 #-e .            # links to `setup.py` file   

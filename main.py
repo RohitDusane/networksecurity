@@ -1,11 +1,12 @@
 #-------------------Data TRANSFORMATION test------------------------------------------------------
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
-from networksecurity.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig, DataTransformationConfig
-from networksecurity.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact
+from networksecurity.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig, DataTransformationConfig,ModelTrainerConfig
+from networksecurity.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,ModelTrainerArtifact
 from networksecurity.components.data_ingestion import DataIngestion
 from networksecurity.components.data_validation import DataValidation
 from networksecurity.components.data_transformation import DataTransformation
+from networksecurity.components.model_trainer import ModelTrainer
 import os
 import sys
 
@@ -48,6 +49,18 @@ if __name__ == '__main__':
         logging.info(f"Data Transformation completed successfully")
         logging.info(f"Data Transformation Artifact details: {data_transformation_artifact}")
         print(data_transformation_artifact)
+
+        # Model Trainer
+        model_trainer_config = ModelTrainerConfig(training_pipeline_config)
+        
+        # Initialise Data Validation
+        model_trainer = ModelTrainer(model_trainer_config, data_transformation_artifact)
+
+        logging.info(f"Initiating Model Trainer")
+        model_trainer_artifact = model_trainer.initiate_model_trainer()
+        logging.info(f"Model Trained Successfully")
+        logging.info(f"Model Trainer Artifact details: {model_trainer_artifact}")
+        print(model_trainer_artifact)
 
         logging.info("Pipeline execution(Data ingestion & validation) completed successfully")
 
