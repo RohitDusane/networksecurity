@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Results</title>
+    <style>
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table th, .table td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        .table-striped tr:nth-child(even) {
+            background-color: #fab8b8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Results</h1>
+    {{ table | safe }}
+    <br><br>
+    <a href="/predict">← Upload another file</a>
+</body>
+</html>

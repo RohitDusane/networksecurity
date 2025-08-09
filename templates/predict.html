@@ -1,0 +1,42 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Upload for Prediction</title>
+</head>
+<body>
+    <h2>Upload CSV to Predict</h2>
+    <form action="/predict" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" required>
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Security Prediction</title>
+</head>
+<body>
+    <h1>Upload CSV for Prediction</h1>
+    <form action="/predict" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" required>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if predictions %}
+        <h2>Predictions:</h2>
+        <table border="1">
+            <tr>
+                <th>Input Row</th>
+                <th>Prediction</th>
+            </tr>
+            {% for pred in predictions %}
+            <tr>
+                <td>{{ loop.index0 }}</td>
+                <td>{{ pred }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
